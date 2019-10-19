@@ -44,7 +44,7 @@ async function main() {
     )
 
     const response = request(tarUrl)
- 
+
     const tarStream = response.pipe(createGunzip()).pipe(extract())
 
     tarStream.on("entry", async (header, stream, next) => {
