@@ -29,7 +29,8 @@ jobs:
             git config --global user.email circleci@circleci.com
             git config --global user.name CircleCI
             echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
-            npm run lock
+            git add 'package.json' 'package-lock.json'
+            git diff-index --quiet --cached origin/$CIRCLE_BRANCH || (git commit -m 'Lock [skip ci]' && git push origin $CIRCLE_BRANCH)
             if [[ "$CIRCLE_BRANCH" = "master" ]] || [[ "$CIRCLE_BRANCH" =~ hotfix* ]]; then npm run cd; else git push origin $CIRCLE_BRANCH; fi
 workflows:
   version: 2

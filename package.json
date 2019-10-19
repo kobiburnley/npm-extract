@@ -33,7 +33,6 @@
     "lint": "tslint {src,test}/**/*.ts*",
     "fix": "npm run lint -- --fix",
     "cd": "standard-version -m \"chore(release): %s [skip ci]\" && git push --follow-tags origin $CIRCLE_BRANCH && npm publish",
-    "lock": "git add 'package.json' 'package-lock.json' && (git diff-index --quiet HEAD || git commit -m 'Lock')",
     "codecov": "nyc report --reporter=json --reporter=html && codecov -f coverage/*.json",
     "npm-extract": "npm-extract",
     "clean": "rm -rf lib es tsconfig.prod.es.tsbuildinfo tsconfig.prod.tsbuildinfo"
