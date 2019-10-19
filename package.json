@@ -1,0 +1,67 @@
+{
+  "name": "npm-extract",
+  "version": "0.0.3",
+  "description": "Extracts a published package from NPM registry",
+  "repository": {
+    "url": "https://github.com/kobiburnley/npm-extract"
+  },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "bin": {
+    "npm-extract": "lib/index.js"
+  },
+  "files": [
+    "lib",
+    "es",
+    "tsconfig.prod.es.tsbuildinfo",
+    "tsconfig.prod.tsbuildinfo"
+  ],
+  "scripts": {
+    "build": "rm -rf lib && rm -rf es && npm run compile",
+    "ci": "npm run lint && npm run build && npm test && npm version patch",
+    "compile": "npm run compile:cjs && npm run compile:es",
+    "compile:cjs": "tsc --build tsconfig.prod.json",
+    "compile:es": "tsc --build tsconfig.prod.es.json",
+    "test-all": "npm run test && npm run test:es",
+    "test": "npm run test:cjs && npm run test:es",
+    "test:cjs": "mocha 'test/**/*.ts*' --require=ts-node/register --require mocha-clean",
+    "test:es": "export TS_NODE_PROJECT=tsconfig.es.json && mocha 'test/**/*.ts*' --require=ts-node/register --require mocha-clean",
+    "watch": "tsc -p tsconfig.prod.json -w",
+    "coverage": "nyc --extension=.ts --extension=.tsx --include=src/**/*.ts* --all --reporter=html mocha --require=ts-node/register --require source-map-support/register --recursive 'test/**/*.ts*'",
+    "check-coverage": "rm -rf .nyc_output && npm run coverage && nyc check-coverage",
+    "publish-local": "npm publish --@revdesk:registry=http://localhost:4873 --force",
+    "lint": "tslint {src,test}/**/*.ts*",
+    "fix": "npm run lint -- --fix",
+    "cd": "standard-version -m \"chore(release): %s [skip ci]\" && git push --follow-tags origin $CIRCLE_BRANCH && npm publish",
+    "lock": "git add 'package.json' 'package-lock.json' && (git diff-index --quiet HEAD || git commit -m 'Lock')",
+    "codecov": "nyc report --reporter=json --reporter=html && codecov -f coverage/*.json",
+    "npm-extract": "npm-extract",
+    "clean": "rm -rf lib es tsconfig.prod.es.tsbuildinfo tsconfig.prod.tsbuildinfo"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/minimist": "^1.2.0",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^10.14.22",
+    "@types/request": "^2.48.3",
+    "@types/tar-stream": "^1.6.1",
+    "codecov": "^3.6.1",
+    "mocha": "^6.2.2",
+    "mocha-clean": "^1.0.0",
+    "npm-extract": "^0.0.2",
+    "nyc": "^14.1.1",
+    "prettier": "^1.18.2",
+    "standard-version": "^7.0.0",
+    "ts-node": "^8.4.1",
+    "tslint": "^5.20.0",
+    "typescript": "^3.6.4"
+  },
+  "dependencies": {
+    "minimist": "^1.2.0",
+    "request": "^2.88.0",
+    "tar-stream": "^2.1.0",
+    "tsla-util": "^1.0.2",
+    "tslib": "^1.10.0"
+  }
+}
