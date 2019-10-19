@@ -10,10 +10,8 @@ import * as request from "request"
 import { createWriteStream, promises as fs } from "fs"
 import { createGunzip } from "zlib"
 import { PassThrough } from "stream"
-import * as nodeGlob from "glob"
 import { maybePackageJSON } from "./maybePackageJSON"
 
-const glob = promisify(nodeGlob)
 const exec = promisify(nodeExec)
 export interface Args {
   package?: string
