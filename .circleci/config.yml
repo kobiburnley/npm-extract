@@ -14,6 +14,7 @@ jobs:
       - run:
           name: Compile
           command: |
+            npm run npm-extract
             npm run compile
             npm run lint
       - run:
