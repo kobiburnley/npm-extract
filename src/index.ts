@@ -7,8 +7,7 @@ import { exec as nodeExec } from "child_process"
 import { promisify } from "util"
 import { join, basename, dirname } from "path"
 import { extract } from "tar-stream"
-import * as https from "https"
-import * as http from "http"
+import * as request from "request"
 import { createWriteStream, promises as fs } from "fs"
 import { createGunzip } from "zlib"
 
@@ -44,12 +43,8 @@ async function main() {
       `npm view ${packageName} dist.tarball`
     )
 
-    const response = await new Promise<http.IncomingMessage>(resolve => {
-      https.get(tarUrl, res => {
-        resolve(res)
-      })
-    })
-
+    const response = request(tarUrl)
+ 
     const tarStream = response.pipe(createGunzip()).pipe(extract())
 
     tarStream.on("entry", async (header, stream, next) => {
