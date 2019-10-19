@@ -2,11 +2,11 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:8.12.0
+      - image: circleci/node:lts
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "15:97:81:6b:69:3c:a2:83:a9:1c:ac:11:c0:9d:0f:ec"
+            - "77:cb:9e:79:dc:9d:c9:62:00:df:52:d5:98:e4:2c:f3"
       - checkout
       - run:
           name: Install
