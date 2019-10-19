@@ -1,0 +1,9 @@
+/node_modules
+/.idea
+*.iml
+/build
+/lib
+/es
+/.nyc_output
+/coverage
+*.tsbuildinfo
