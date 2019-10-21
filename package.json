@@ -58,6 +58,7 @@
   },
   "dependencies": {
     "minimist": "^1.2.0",
+    "p-event": "^4.1.0",
     "request": "^2.88.0",
     "tar-stream": "^2.1.0",
     "tsla-util": "^1.0.2",
