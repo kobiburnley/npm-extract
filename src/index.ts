@@ -69,6 +69,7 @@ async function main() {
     await Promise.all(srcFiles.map(srcFile => fs.utimes(srcFile, now, now)))
   } catch (e) {
     console.error(e)
+    process.exit(1)
   }
 }
 
