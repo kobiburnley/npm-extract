@@ -1,6 +1,6 @@
 {
   "name": "npm-extract",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Extracts a published package from NPM registry",
   "repository": {
     "url": "https://github.com/kobiburnley/npm-extract"
