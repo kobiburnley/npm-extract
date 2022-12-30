@@ -46,7 +46,7 @@
     "@types/request": "^2.48.3",
     "@types/tar-stream": "^1.6.1",
     "codecov": "^3.6.1",
-    "mocha": "^6.2.2",
+    "mocha": "^10.2.0",
     "mocha-clean": "^1.0.0",
     "npm-extract": "^0.0.3",
     "nyc": "^14.1.1",
